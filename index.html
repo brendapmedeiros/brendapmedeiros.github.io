@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Portfólio Brenda Medeiros." />
-  <title>Brenda Medeiros | Portfólio</title>
+  <title>Brenda Medeiros </title>
   <!-- Fontes-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,6 +15,7 @@
       --plum: #5f263d;
       --berry: #9b4961;
       --rose: #d99aaa;
+
       --blush: #f6e5e8;
       --champagne: #f7efe4;
       --porcelain: #fffaf7;
@@ -72,6 +73,24 @@
       justify-content: space-between;
       gap: 24px;
     }
+    .shimmer {
+  background-image: linear-gradient(
+    110deg,
+    var(--plum) 0%,
+    var(--plum) 36%,
+    #d99aaa 47%,
+    #fffaf7 52%,
+    var(--berry) 60%,
+    var(--plum) 74%,
+    var(--plum) 100%
+  );
+  background-size: 300% 100%;
+  background-position: 120% center;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: brand-shimmer 3.2s linear infinite;
+}
 
     .brand {
       color: transparent;
@@ -94,7 +113,7 @@
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: brand-shimmer 3.2s cubic-bezier(.4, 0, .2, 1) infinite;
+     
     }
 
     @keyframes brand-shimmer {
@@ -148,7 +167,7 @@
       display: grid;
       grid-template-columns: 1.12fr .88fr;
       gap: 64px;
-      align-items: end;
+      align-items: start;
     }
 
     .eyebrow {
@@ -167,7 +186,7 @@
       margin-bottom: 0;
       color: var(--plum);
       font-family: "Fraunces", Georgia, "Times New Roman", serif;
-      font-size: clamp(3.1rem, 7.4vw, 7.8rem);
+      font-size: clamp(3.1rem, 7.1vw, 7.8rem);
       line-height: .9;
       font-weight: 700;
     }
@@ -665,7 +684,7 @@
       <div class="wrap hero-grid">
         <div class="hero-title">
           <p class="eyebrow">SQL · Python · Airflow · Fabric · Data Quality</p>
-          <h1>Dados confiáveis, do pipeline ao dashboard.</h1>
+          <h1>Dados <a class="shimmer">confiáveis</a>, do&nbsp;pipeline ao&nbsp;dashboard.</h1>
         </div>
 
         <div class="hero-body">
