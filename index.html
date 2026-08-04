@@ -190,6 +190,16 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--focus); outline
   background: color-mix(in srgb, var(--surface) 34%, transparent); color: var(--accent-strong);
 }
 .nav-actions { display: flex; justify-content: flex-end; align-items: center; gap: 7px; }
+.lang-toggle {
+  min-width: 58px; height: 34px; display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+  padding: 0 10px; border: 0; border-radius: 8px; background: transparent; color: var(--muted); cursor: pointer;
+  font-size: .63rem; font-weight: 700; letter-spacing: .08em;
+  transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+}
+.lang-toggle:hover { background: var(--surface); color: var(--accent); transform: translateY(-1px); }
+.lang-toggle span { opacity: .48; transition: opacity 160ms ease, color 160ms ease; }
+.lang-toggle .is-active { color: var(--accent); opacity: 1; }
+.lang-toggle .divider { width: 1px; height: 12px; background: currentColor; opacity: .22; }
 .icon-button {
   width: 39px; height: 39px; display: grid; place-items: center; padding: 0;
   border: 0; border-radius: 8px; background: transparent; color: var(--muted); cursor: pointer;
@@ -428,6 +438,7 @@ footer { padding-top: 28px; }
   .brand-name { font-size: .76rem; letter-spacing: .13em; }
   .brand-tagline { display: none; }
   .nav-cta { display: none; }
+  .lang-toggle { min-width: 52px; padding-inline: 8px; }
   .navlinks { grid-template-columns: 1fr; width: calc(100vw - 20px); }
   .hero { min-height: auto; padding: 138px 0 84px; }
   .hero-lines { right: -46%; bottom: -2%; width: 118vw; opacity: .28; }
@@ -471,21 +482,24 @@ footer { padding-top: 28px; }
 </style>
 </head>
 <body>
-<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<a class="skip-link" data-i18n="skipLink" href="#conteudo">Pular para o conteúdo</a>
 <header class="topbar" id="topbar">
 <nav aria-label="Navegação principal" class="nav-shell">
-<a aria-label="Brenda Medeiros — início" class="brand" href="#inicio"><span aria-hidden="true" class="brand-mark"><span class="logo-b">B</span><span class="logo-m">M</span></span><span class="brand-copy"><span class="brand-name">Brenda Medeiros</span><span class="brand-tagline">Dados · Automação · Operações</span></span></a>
+<a aria-label="Brenda Medeiros — início" class="brand" data-i18n-aria="brandAria" href="#inicio"><span aria-hidden="true" class="brand-mark"><span class="logo-b">B</span><span class="logo-m">M</span></span><span class="brand-copy"><span class="brand-name">Brenda Medeiros</span><span class="brand-tagline" data-i18n="brandTagline">Dados · Automação · Operações</span></span></a>
 <div class="navlinks" id="navlinks">
-<a href="#projetos">Projetos</a>
-<a href="#sobre">Sobre</a>
-<a href="#contato">Contato</a>
+<a data-i18n="navProjects" href="#projetos">Projetos</a>
+<a data-i18n="navAbout" href="#sobre">Sobre</a>
+<a data-i18n="navContact" href="#contato">Contato</a>
 </div>
 <div class="nav-actions">
+<button aria-label="Alternar idioma para inglês" class="lang-toggle" data-i18n-aria="langToggleAria" id="lang-toggle" title="PT / EN" type="button">
+<span data-lang-option="pt">PT</span><span aria-hidden="true" class="divider"></span><span data-lang-option="en">EN</span>
+</button>
 <button aria-label="Alternar tema" class="icon-button" id="theme-toggle" title="Alternar tema" type="button">
 <svg aria-hidden="true" class="theme-icon-sun" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
 <svg aria-hidden="true" class="theme-icon-moon" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path></svg>
 </button>
-<button aria-controls="navlinks" aria-expanded="false" aria-label="Abrir menu" class="icon-button menu-toggle" id="menu-toggle" type="button">
+<button aria-controls="navlinks" aria-expanded="false" aria-label="Abrir menu" class="icon-button menu-toggle" data-i18n-menu-label="closed" id="menu-toggle" type="button">
 <svg aria-hidden="true" viewbox="0 0 24 24"><path d="M5 8h14M5 16h14"></path></svg>
 </button>
 </div>
@@ -501,11 +515,11 @@ footer { padding-top: 28px; }
 </svg>
 <div class="wrap hero-grid">
 <div class="hero-copy">
-<p class="eyebrow" data-reveal=""> Olá, eu sou a Brenda</p>
-<h1 data-reveal="">Conecto dados, automatizo processos e <span>destravo operações.</span></h1>
-<p class="hero-summary" data-reveal="">Organizo dados, integro ferramentas e automatizo tarefas que tomam tempo da sua operação. <strong>Minha experiência em suporte e processos fiscais me ajuda a entender <br>suas regras de negócio antes de desenvolver a solução.</strong></p>
+<p class="eyebrow" data-i18n="heroEyebrow" data-reveal=""> Olá, eu sou a Brenda</p>
+<h1 data-i18n="heroTitle" data-reveal="">Conecto dados, automatizo processos e <span>destravo operações.</span></h1>
+<p class="hero-summary" data-i18n="heroSummary" data-reveal="">Organizo dados, integro ferramentas e automatizo tarefas que tomam tempo da sua operação. <strong>Minha experiência em suporte e processos fiscais me ajuda a entender <br>suas regras de negócio antes de desenvolver a solução.</strong></p>
 <div class="hero-actions" data-reveal="">
-<a class="button" href="#projetos">Ver projetos <svg aria-hidden="true" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<a class="button" data-i18n="heroButton" href="#projetos">Ver projetos <svg aria-hidden="true" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
 </div>
 </div>
 </div>
@@ -521,57 +535,57 @@ footer { padding-top: 28px; }
 <div class="wrap">
 <header class="section-head" data-reveal="">
 <div>
-<p class="eyebrow">Projetos selecionados</p>
-<h2>Projetos que mostram como eu trabalho.</h2>
+<p class="eyebrow" data-i18n="projectsEyebrow">Projetos selecionados</p>
+<h2 data-i18n="projectsTitle">Projetos que mostram como eu trabalho.</h2>
 </div>
 
 </header>
 <div class="projects">
 <article class="project" data-reveal="">
-<div aria-label="Fluxo do pipeline de qualidade de dados" class="project-visual">
+<div aria-label="Fluxo do pipeline de qualidade de dados" class="project-visual" data-i18n-aria="projectOneVisualAria">
 <div class="flow">
-<div class="flow-node"><strong>Fontes de dados</strong><span>CSV · banco · API</span></div>
-<div class="flow-node"><strong>Airflow</strong><span>agendamento · execução · logs</span></div>
-<div class="flow-node"><strong>Great Expectations</strong><span>regras · validação · falhas</span></div>
-<div class="flow-node"><strong>Histórico e dashboard</strong><span>resultados · alertas · acompanhamento</span></div>
+<div class="flow-node"><strong data-i18n="projectOneFlowOneTitle">Fontes de dados</strong><span data-i18n="projectOneFlowOneMeta">CSV · banco · API</span></div>
+<div class="flow-node"><strong>Airflow</strong><span data-i18n="projectOneFlowTwoMeta">agendamento · execução · logs</span></div>
+<div class="flow-node"><strong>Great Expectations</strong><span data-i18n="projectOneFlowThreeMeta">regras · validação · falhas</span></div>
+<div class="flow-node"><strong data-i18n="projectOneFlowFourTitle">Histórico e dashboard</strong><span data-i18n="projectOneFlowFourMeta">resultados · alertas · acompanhamento</span></div>
 </div>
 </div>
 <div class="project-copy">
-<span class="project-label">Data quality · Pipeline </span>
-<h3>Monitoramento de qualidade de dados</h3>
-<p class="project-summary">Criei um pipeline para validar bases antes do consumo analítico, registrar falhas e acompanhar o histórico das verificações.</p>
+<span class="project-label" data-i18n="projectOneLabel">Data quality · Pipeline </span>
+<h3 data-i18n="projectOneTitle">Monitoramento de qualidade de dados</h3>
+<p class="project-summary" data-i18n="projectOneSummary">Criei um pipeline para validar bases antes do consumo analítico, registrar falhas e acompanhar o histórico das verificações.</p>
 <dl class="project-facts">
-<div><dt>Problema</dt><dd>Inconsistências de dados podiam chegar aos relatórios sem alerta ou registro.</dd></div>
-<div><dt>O que fiz</dt><dd>Integrei validações, orquestração e persistência dos resultados.</dd></div>
-<div><dt>Entrega</dt><dd>Fluxo modular, documentação e painel para consulta das falhas.</dd></div>
+<div><dt data-i18n="factProblem">Problema</dt><dd data-i18n="projectOneProblem">Inconsistências de dados podiam chegar aos relatórios sem alerta ou registro.</dd></div>
+<div><dt data-i18n="factWhatIDid">O que fiz</dt><dd data-i18n="projectOneWhatIDid">Integrei validações, orquestração e persistência dos resultados.</dd></div>
+<div><dt data-i18n="factDelivery">Entrega</dt><dd data-i18n="projectOneDelivery">Fluxo modular, documentação e painel para consulta das falhas.</dd></div>
 </dl>
-<div class="project-links"><a class="text-link" href="https://github.com/brendapmedeiros/monitoramento" rel="noreferrer" target="_blank">Ver repositório</a></div>
+<div class="project-links"><a class="text-link" data-i18n="repoLink" href="https://github.com/brendapmedeiros/monitoramento" rel="noreferrer" target="_blank">Ver repositório</a></div>
 </div>
 </article>
 <article class="project" data-reveal="">
-<div aria-label="Arquitetura da aplicação Circuito TVO" class="project-visual">
+<div aria-label="Arquitetura da aplicação Circuito TVO" class="project-visual" data-i18n-aria="projectTwoVisualAria">
 <div class="flow">
-<div class="flow-node"><strong>Interface</strong><span>eventos · trilhas · biodiversidade</span></div>
-<div class="flow-node"><strong>API Express</strong><span>rotas · regras · validação</span></div>
-<div class="flow-node"><strong>Prisma ORM</strong><span>schema · seed · consultas</span></div>
-<div class="flow-node"><strong>PostgreSQL</strong><span>dados ambientais · métricas</span></div>
+<div class="flow-node"><strong>Interface</strong><span data-i18n="projectTwoFlowOneMeta">eventos · trilhas · biodiversidade</span></div>
+<div class="flow-node"><strong>API Express</strong><span data-i18n="projectTwoFlowTwoMeta">rotas · regras · validação</span></div>
+<div class="flow-node"><strong>Prisma ORM</strong><span data-i18n="projectTwoFlowThreeMeta">schema · seed · consultas</span></div>
+<div class="flow-node"><strong>PostgreSQL</strong><span data-i18n="projectTwoFlowFourMeta">dados ambientais · métricas</span></div>
 </div>
 </div>
 <div class="project-copy">
-<span class="project-label">API · Banco de dados</span>
+<span class="project-label" data-i18n="projectTwoLabel">API · Banco de dados</span>
 <h3>Circuito TVO</h3>
-<p class="project-summary">Desenvolvi um MVP para centralizar informações de ecoturismo em uma base relacional acessada por API.</p>
+<p class="project-summary" data-i18n="projectTwoSummary">Desenvolvi um MVP para centralizar informações de ecoturismo em uma base relacional acessada por API.</p>
 <dl class="project-facts">
-<div><dt>Problema</dt><dd>Informações espalhadas e sem estrutura para consulta.</dd></div>
-<div><dt>O que fiz</dt><dd>Modelei o banco, criei a API, carreguei dados reais e publiquei a aplicação.</dd></div>
-<div><dt>Entrega</dt><dd>Rotas documentadas, deploy funcional e base pronta para novas consultas.</dd></div>
+<div><dt data-i18n="factProblem">Problema</dt><dd data-i18n="projectTwoProblem">Informações espalhadas e sem estrutura para consulta.</dd></div>
+<div><dt data-i18n="factWhatIDid">O que fiz</dt><dd data-i18n="projectTwoWhatIDid">Modelei o banco, criei a API, carreguei dados reais e publiquei a aplicação.</dd></div>
+<div><dt data-i18n="factDelivery">Entrega</dt><dd data-i18n="projectTwoDelivery">Rotas documentadas, deploy funcional e base pronta para novas consultas.</dd></div>
 </dl>
 <div class="project-links">
-<a class="text-link" href="https://github.com/brendapmedeiros/circuito_tvo" rel="noreferrer" target="_blank">Ver repositório</a>
+<a class="text-link" data-i18n="repoLink" href="https://github.com/brendapmedeiros/circuito_tvo" rel="noreferrer" target="_blank">Ver repositório</a>
 </div>
 </div>
 </article>
-<p class="projects-note" data-reveal="">Mais projetos <strong>em breve...</strong></p>
+<p class="projects-note" data-i18n="projectsNote" data-reveal="">Mais projetos <strong>em breve...</strong></p>
 
 </div>
 </div>
@@ -579,16 +593,16 @@ footer { padding-top: 28px; }
 <section class="section" id="sobre">
 <div class="wrap about-grid">
 <div data-reveal="">
-<p class="eyebrow">Sobre mim</p>
-<h2 class="about-title"><br>Eu conheço os dados <em>antes</em> de virarem tabelas.</h2>
+<p class="eyebrow" data-i18n="aboutEyebrow">Sobre mim</p>
+<h2 class="about-title" data-i18n="aboutTitle"><br>Eu conheço os dados <em>antes</em> de virarem tabelas.</h2>
 </div>
 <div class="about-copy" data-reveal="">
-<p>Minha trajetória começou em suporte técnico e processos fiscais, trabalhando com regras rígidas de negócio, grandes volumes de dados e rotinas que não podiam falhar.</p>
-<p>Hoje uso essa experiência para construir integrações e automações com mais contexto.</p>
+<p data-i18n="aboutTextOne">Minha trajetória começou em suporte técnico e processos fiscais, trabalhando com regras rígidas de negócio, grandes volumes de dados e rotinas que não podiam falhar.</p>
+<p data-i18n="aboutTextTwo">Hoje uso essa experiência para construir integrações e automações com mais contexto.</p>
 <dl class="skill-groups">
-<div class="skill-group"><dt>Uso em projetos</dt><dd>Python, Mongo DB, Great Expectations, Git e GitHub.</dd></div>
-<div class="skill-group"><dt>Uso no trabalho</dt><dd>N8N, SQL, Javascript, SQLServer, APIs REST.</dd></div>
-<div class="skill-group"><dt>Em aprofundamento</dt><dd>Orquestração, GenAI, Spark, Databricks, AI Agents.</dd></div>
+<div class="skill-group"><dt data-i18n="skillsProjects">Uso em projetos</dt><dd>Python, Mongo DB, Great Expectations, Git e GitHub.</dd></div>
+<div class="skill-group"><dt data-i18n="skillsWork">Uso no trabalho</dt><dd>N8N, SQL, Javascript, SQLServer, APIs REST.</dd></div>
+<div class="skill-group"><dt data-i18n="skillsLearning">Em aprofundamento</dt><dd data-i18n="skillsLearningText">Orquestração, GenAI, Spark, Databricks, AI Agents.</dd></div>
 </dl>
 </div>
 </div>
@@ -597,10 +611,10 @@ footer { padding-top: 28px; }
 <div class="wrap">
 <div class="contact-top" data-reveal="">
 <div>
-<p class="eyebrow">Contato</p>
-<h2>Vamos conversar!</h2>
+<p class="eyebrow" data-i18n="contactEyebrow">Contato</p>
+<h2 data-i18n="contactTitle">Vamos conversar!</h2>
 </div>
-<p class="contact-copy">Hoje meu foco está em aprofundar minha atuação em engenharia de dados e construir soluções que resolvam problemas de grande impacto.</p>
+<p class="contact-copy" data-i18n="contactCopy">Hoje meu foco está em aprofundar minha atuação em engenharia de dados e construir soluções que resolvam problemas de grande impacto.</p>
 </div>
 <div class="contact-links" data-reveal="">
 <a class="contact-link" href="mailto:brenda.pmedeiros@outlook.com"><span><strong>E-mail</strong><small>brenda.pmedeiros@outlook.com</small></span><span>↗</span></a>
@@ -610,7 +624,7 @@ footer { padding-top: 28px; }
 <footer>
 <div class="footer-row">
 <span>© 2026 Brenda Medeiros</span>
-<a href="#inicio">↑</a>
+<a aria-label="Voltar ao início" data-i18n-aria="backToTop" href="#inicio">↑</a>
 </div>
 </footer>
 </div>
@@ -621,19 +635,182 @@ footer { padding-top: 28px; }
       const root = document.documentElement;
       const topbar = document.getElementById("topbar");
       const themeButton = document.getElementById("theme-toggle");
+      const langButton = document.getElementById("lang-toggle");
       const menuButton = document.getElementById("menu-toggle");
       const navLinks = document.getElementById("navlinks");
       const systemDark = window.matchMedia("(prefers-color-scheme: dark)");
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const descriptionMeta = document.querySelector("meta[name='description']");
+
+      const translations = {
+        pt: {
+          pageTitle: "Brenda Medeiros",
+          pageDescription: "Portfólio de Brenda Medeiros — engenharia de dados, automação e integrações.",
+          skipLink: "Pular para o conteúdo",
+          brandAria: "Brenda Medeiros — início",
+          brandTagline: "Dados · Automação · Operações",
+          navProjects: "Projetos",
+          navAbout: "Sobre",
+          navContact: "Contato",
+          langToggleAria: "Alternar idioma para inglês",
+          themeLight: "Ativar tema claro",
+          themeDark: "Ativar tema escuro",
+          menuOpen: "Abrir menu",
+          menuClose: "Fechar menu",
+          heroEyebrow: " Olá, eu sou a Brenda",
+          heroTitle: "Conecto dados, automatizo processos e <span>destravo operações.</span>",
+          heroSummary: "Organizo dados, integro ferramentas e automatizo tarefas que tomam tempo da sua operação. <strong>Minha experiência em suporte e processos fiscais me ajuda a entender <br>suas regras de negócio antes de desenvolver a solução.</strong>",
+          heroButton: "Ver projetos <svg aria-hidden=\"true\" viewbox=\"0 0 24 24\"><path d=\"M5 12h14M13 6l6 6-6 6\"></path></svg>",
+          projectsEyebrow: "Projetos selecionados",
+          projectsTitle: "Projetos que mostram como eu trabalho.",
+          projectOneVisualAria: "Fluxo do pipeline de qualidade de dados",
+          projectOneFlowOneTitle: "Fontes de dados",
+          projectOneFlowOneMeta: "CSV · banco · API",
+          projectOneFlowTwoMeta: "agendamento · execução · logs",
+          projectOneFlowThreeMeta: "regras · validação · falhas",
+          projectOneFlowFourTitle: "Histórico e dashboard",
+          projectOneFlowFourMeta: "resultados · alertas · acompanhamento",
+          projectOneLabel: "Data quality · Pipeline ",
+          projectOneTitle: "Monitoramento de qualidade de dados",
+          projectOneSummary: "Criei um pipeline para validar bases antes do consumo analítico, registrar falhas e acompanhar o histórico das verificações.",
+          factProblem: "Problema",
+          factWhatIDid: "O que fiz",
+          factDelivery: "Entrega",
+          projectOneProblem: "Inconsistências de dados podiam chegar aos relatórios sem alerta ou registro.",
+          projectOneWhatIDid: "Integrei validações, orquestração e persistência dos resultados.",
+          projectOneDelivery: "Fluxo modular, documentação e painel para consulta das falhas.",
+          repoLink: "Ver repositório",
+          projectTwoVisualAria: "Arquitetura da aplicação Circuito TVO",
+          projectTwoFlowOneMeta: "eventos · trilhas · biodiversidade",
+          projectTwoFlowTwoMeta: "rotas · regras · validação",
+          projectTwoFlowThreeMeta: "schema · seed · consultas",
+          projectTwoFlowFourMeta: "dados ambientais · métricas",
+          projectTwoLabel: "API · Banco de dados",
+          projectTwoSummary: "Desenvolvi um MVP para centralizar informações de ecoturismo em uma base relacional acessada por API.",
+          projectTwoProblem: "Informações espalhadas e sem estrutura para consulta.",
+          projectTwoWhatIDid: "Modelei o banco, criei a API, carreguei dados reais e publiquei a aplicação.",
+          projectTwoDelivery: "Rotas documentadas, deploy funcional e base pronta para novas consultas.",
+          projectsNote: "Mais projetos <strong>em breve...</strong>",
+          aboutEyebrow: "Sobre mim",
+          aboutTitle: "<br>Eu conheço os dados <em>antes</em> de virarem tabelas.",
+          aboutTextOne: "Minha trajetória começou em suporte técnico e processos fiscais, trabalhando com regras rígidas de negócio, grandes volumes de dados e rotinas que não podiam falhar.",
+          aboutTextTwo: "Hoje uso essa experiência para construir integrações e automações com mais contexto.",
+          skillsProjects: "Uso em projetos",
+          skillsWork: "Uso no trabalho",
+          skillsLearning: "Em aprofundamento",
+          skillsLearningText: "Orquestração, GenAI, Spark, Databricks, AI Agents.",
+          contactEyebrow: "Contato",
+          contactTitle: "Vamos conversar!",
+          contactCopy: "Hoje meu foco está em aprofundar minha atuação em engenharia de dados e construir soluções que resolvam problemas de grande impacto.",
+          backToTop: "Voltar ao início"
+        },
+        en: {
+          pageTitle: "Brenda Medeiros",
+          pageDescription: "Brenda Medeiros portfolio — data engineering, automation, and integrations.",
+          skipLink: "Skip to content",
+          brandAria: "Brenda Medeiros — home",
+          brandTagline: "Data · Automation · Operations",
+          navProjects: "Projects",
+          navAbout: "About",
+          navContact: "Contact",
+          langToggleAria: "Switch language to Portuguese",
+          themeLight: "Activate light theme",
+          themeDark: "Activate dark theme",
+          menuOpen: "Open menu",
+          menuClose: "Close menu",
+          heroEyebrow: " Hi, I am Brenda",
+          heroTitle: "I connect data, automate processes, and <span>unlock operations.</span>",
+          heroSummary: "I organize data, integrate tools, and automate tasks that take time away from your operation. <strong>My background in technical support for tax bookkeeping helps me understand <br>business rules before building the solution.</strong>",
+          heroButton: "View projects <svg aria-hidden=\"true\" viewbox=\"0 0 24 24\"><path d=\"M5 12h14M13 6l6 6-6 6\"></path></svg>",
+          projectsEyebrow: "Selected projects",
+          projectsTitle: "Projects that show how I work.",
+          projectOneVisualAria: "Data quality pipeline flow",
+          projectOneFlowOneTitle: "Data sources",
+          projectOneFlowOneMeta: "CSV · database · API",
+          projectOneFlowTwoMeta: "scheduling · execution · logs",
+          projectOneFlowThreeMeta: "rules · validation · failures",
+          projectOneFlowFourTitle: "History and dashboard",
+          projectOneFlowFourMeta: "results · alerts · tracking",
+          projectOneLabel: "Data quality · Pipeline ",
+          projectOneTitle: "Data quality monitoring",
+          projectOneSummary: "I built a pipeline to validate datasets before analytical use, log failures, and track validation history.",
+          factProblem: "Problem",
+          factWhatIDid: "What I did",
+          factDelivery: "Delivery",
+          projectOneProblem: "Data inconsistencies could reach reports without alerts or records.",
+          projectOneWhatIDid: "I integrated validations, orchestration, and persistence of the results.",
+          projectOneDelivery: "A modular flow, documentation, and a dashboard for reviewing failures.",
+          repoLink: "View repository",
+          projectTwoVisualAria: "Circuito TVO application architecture",
+          projectTwoFlowOneMeta: "events · trails · biodiversity",
+          projectTwoFlowTwoMeta: "routes · rules · validation",
+          projectTwoFlowThreeMeta: "schema · seed · queries",
+          projectTwoFlowFourMeta: "environmental data · metrics",
+          projectTwoLabel: "API · Database",
+          projectTwoSummary: "I developed an MVP to centralize ecotourism information in a relational database accessed through an API.",
+          projectTwoProblem: "Information was scattered and lacked structure for querying.",
+          projectTwoWhatIDid: "I modeled the database, created the API, loaded real data, and published the application.",
+          projectTwoDelivery: "Documented routes, a working deployment, and a database ready for new queries.",
+          projectsNote: "More projects <strong>coming soon...</strong>",
+          aboutEyebrow: "About me",
+          aboutTitle: "<br>I understand data <em>before</em> it becomes tables.",
+          aboutTextOne: "My path began in technical support for tax bookkeeping, working with strict business rules, large data volumes, and routines that could not fail.",
+          aboutTextTwo: "Today I use that experience to build integrations and automations with more context.",
+          skillsProjects: "Project use",
+          skillsWork: "Work use",
+          skillsLearning: "Currently learning",
+          skillsLearningText: "Orchestration, GenAI, Spark, Databricks, AI Agents.",
+          contactEyebrow: "Contact",
+          contactTitle: "Let's talk!",
+          contactCopy: "Right now, my focus is deepening my work in data engineering and building solutions that solve high-impact problems.",
+          backToTop: "Back to top"
+        }
+      };
 
       const currentTheme = () => root.dataset.theme || (systemDark.matches ? "dark" : "light");
+      const currentLanguage = () => root.dataset.lang || "pt";
+      const t = key => translations[currentLanguage()][key] || translations.pt[key] || "";
 
       function updateThemeLabel() {
         themeButton.setAttribute(
           "aria-label",
-          currentTheme() === "dark" ? "Ativar tema claro" : "Ativar tema escuro"
+          currentTheme() === "dark" ? t("themeLight") : t("themeDark")
         );
       }
+
+      function updateMenuLabel(isOpen = navLinks.classList.contains("is-open")) {
+        menuButton.setAttribute("aria-label", isOpen ? t("menuClose") : t("menuOpen"));
+      }
+
+      function updateLanguage(language) {
+        root.dataset.lang = language;
+        root.lang = language === "pt" ? "pt-BR" : "en";
+        document.title = translations[language].pageTitle;
+        descriptionMeta?.setAttribute("content", translations[language].pageDescription);
+        document.querySelectorAll("[data-i18n]").forEach(element => {
+          element.innerHTML = translations[language][element.dataset.i18n];
+        });
+        document.querySelectorAll("[data-i18n-aria]").forEach(element => {
+          element.setAttribute("aria-label", translations[language][element.dataset.i18nAria]);
+        });
+        langButton.querySelectorAll("[data-lang-option]").forEach(option => {
+          option.classList.toggle("is-active", option.dataset.langOption === language);
+        });
+        try { localStorage.setItem("brenda-portfolio-language", language); } catch (_) {}
+        updateThemeLabel();
+        updateMenuLabel();
+      }
+
+      try {
+        const savedLanguage = localStorage.getItem("brenda-portfolio-language");
+        updateLanguage(savedLanguage === "en" ? "en" : "pt");
+      } catch (_) {
+        updateLanguage("pt");
+      }
+
+      langButton.addEventListener("click", () => {
+        updateLanguage(currentLanguage() === "pt" ? "en" : "pt");
+      });
 
       themeButton.addEventListener("click", () => {
         const nextTheme = currentTheme() === "dark" ? "light" : "dark";
@@ -645,7 +822,7 @@ footer { padding-top: 28px; }
       function closeMenu() {
         navLinks.classList.remove("is-open");
         menuButton.setAttribute("aria-expanded", "false");
-        menuButton.setAttribute("aria-label", "Abrir menu");
+        updateMenuLabel(false);
         document.body.classList.remove("menu-open");
       }
 
@@ -653,7 +830,7 @@ footer { padding-top: 28px; }
         const isOpen = !navLinks.classList.contains("is-open");
         navLinks.classList.toggle("is-open", isOpen);
         menuButton.setAttribute("aria-expanded", String(isOpen));
-        menuButton.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
+        updateMenuLabel(isOpen);
         document.body.classList.toggle("menu-open", isOpen);
       });
 
