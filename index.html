@@ -261,6 +261,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--focus); outline
 @keyframes ticker { to { transform: translateX(-50%); } }
 
 .section { padding: clamp(92px, 10vw, 142px) 0; }
+#projetos { padding-bottom: clamp(68px, 7vw, 104px); }
+#sobre { padding-top: clamp(68px, 7vw, 104px); }
 .section-head { display: grid; grid-template-columns: minmax(0, .82fr) minmax(260px, .45fr); gap: clamp(40px, 8vw, 110px); align-items: end; margin-bottom: clamp(48px, 7vw, 80px); }
 .section-head h2, .experience-intro h2, .about-title, .contact h2 {
   font-family: "Playfair Display", Georgia, serif; font-weight: 500; letter-spacing: -.035em;
@@ -268,6 +270,37 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--focus); outline
 .section-head h2 { max-width: 750px; margin: 14px 0 0; font-size: clamp(2.8rem, 5vw, 5rem); line-height: .99; }
 .section-head > p { margin: 0; color: var(--muted); font-size: .91rem; line-height: 1.76; }
 .projects { display: grid; gap: clamp(28px, 5vw, 52px); }
+.projects-note {
+  position: relative;
+  display: inline-block;
+  justify-self: center;
+  margin: 0 auto;
+  padding: 2px 4px;
+  overflow: hidden;
+  color: var(--ink-soft);
+  font-size: clamp(.96rem, 1.35vw, 1.08rem);
+  line-height: 1.75;
+  text-align: center;
+}
+.projects-note strong { color: var(--ink); font-weight: 600; }
+.projects-note::after {
+  content: "";
+  position: absolute;
+  inset: -20% auto -20% -55%;
+  width: 38%;
+  transform: skewX(-16deg);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--surface-solid) 62%, transparent), transparent);
+  opacity: 0;
+  pointer-events: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .projects-note:hover::after { animation: note-shine 920ms ease; }
+}
+@keyframes note-shine {
+  0% { left: -55%; opacity: 0; }
+  22% { opacity: .45; }
+  100% { left: 118%; opacity: 0; }
+}
 .project {
   position: relative; display: grid; grid-template-columns: minmax(0, .95fr) minmax(380px, 1fr);
   min-height: 550px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-xl);
@@ -470,7 +503,7 @@ footer { padding-top: 28px; }
 <div class="hero-copy">
 <p class="eyebrow" data-reveal=""> Olá, eu sou a Brenda</p>
 <h1 data-reveal="">Conecto dados, automatizo processos e <span>destravo operações.</span></h1>
-<p class="hero-summary" data-reveal="">Organizo dados, integro ferramentas e automatizo tarefas que tomam tempo da operação. <strong>Minha base em suporte e processos fiscais me ajuda a entender a regra antes de construir a solução.</strong></p>
+<p class="hero-summary" data-reveal="">Organizo dados, integro ferramentas e automatizo tarefas que tomam tempo da sua operação. <strong>Minha experiência em suporte e processos fiscais me ajuda a entender <br>suas regras de negócio antes de desenvolver a solução.</strong></p>
 <div class="hero-actions" data-reveal="">
 <a class="button" href="#projetos">Ver projetos <svg aria-hidden="true" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
 </div>
@@ -508,32 +541,11 @@ footer { padding-top: 28px; }
 <h3>Monitoramento de qualidade de dados</h3>
 <p class="project-summary">Criei um pipeline para validar bases antes do consumo analítico, registrar falhas e acompanhar o histórico das verificações.</p>
 <dl class="project-facts">
-<div><dt>Problema</dt><dd>Inconsistências podiam chegar aos relatórios sem alerta ou registro.</dd></div>
+<div><dt>Problema</dt><dd>Inconsistências de dados podiam chegar aos relatórios sem alerta ou registro.</dd></div>
 <div><dt>O que fiz</dt><dd>Integrei validações, orquestração e persistência dos resultados.</dd></div>
-<div><dt>Entrega</dt><dd>Pipeline modular, documentação e painel para consulta das falhas.</dd></div>
+<div><dt>Entrega</dt><dd>Fluxo modular, documentação e painel para consulta das falhas.</dd></div>
 </dl>
 <div class="project-links"><a class="text-link" href="https://github.com/brendapmedeiros/monitoramento" rel="noreferrer" target="_blank">Ver repositório</a></div>
-</div>
-</article>
-<article class="project" data-reveal="">
-<div aria-label="Fluxo do pipeline comercial no Microsoft Fabric" class="project-visual">
-<div class="flow">
-<div class="flow-node"><strong>Dados comerciais</strong><span>vendas · clientes · produtos</span></div>
-<div class="flow-node"><strong>Lakehouse Fabric</strong><span>ingestão · tratamento · organização</span></div>
-<div class="flow-node"><strong>Modelo dimensional</strong><span>fato_vendas · dimensões</span></div>
-<div class="flow-node"><strong>Power BI</strong><span>modelo semântico · DAX · relatório</span></div>
-</div>
-</div>
-<div class="project-copy">
-<span class="project-label">Microsoft Fabric · Analytics</span>
-<h3>Modelo comercial para análise de vendas</h3>
-<p class="project-summary">Organizei dados de vendas, produtos e clientes em um modelo dimensional para evitar cálculos espalhados no relatório.</p>
-<dl class="project-facts">
-<div><dt>Problema</dt><dd>Indicadores sem uma base única e difícil de conferir.</dd></div>
-<div><dt>O que fiz</dt><dd>Modelei fato e dimensões, criei medidas e organizei a camada de consumo.</dd></div>
-<div><dt>Entrega</dt><dd>Base reutilizável no Power BI e estrutura mais simples de manter.</dd></div>
-</dl>
-<div class="project-links"><a class="text-link" href="https://github.com/brendapmedeiros" rel="noreferrer" target="_blank">Ver repositório</a></div>
 </div>
 </article>
 <article class="project" data-reveal="">
@@ -559,6 +571,8 @@ footer { padding-top: 28px; }
 </div>
 </div>
 </article>
+<p class="projects-note" data-reveal="">Mais projetos <strong>em breve...</strong></p>
+
 </div>
 </div>
 </section>
@@ -566,15 +580,15 @@ footer { padding-top: 28px; }
 <div class="wrap about-grid">
 <div data-reveal="">
 <p class="eyebrow">Sobre mim</p>
-<h2 class="about-title"><br>Eu conheço o dado <em>antes</em> de virar tabela.</h2>
+<h2 class="about-title"><br>Eu conheço os dados <em>antes</em> de virarem tabelas.</h2>
 </div>
 <div class="about-copy" data-reveal="">
-<p>Minha trajetória começou em suporte e processos fiscais, trabalhando com regras de negócio, clientes e rotinas que não podiam falhar.</p>
-<p>Hoje uso essa experiência para construir pipelines, integrações e automações com mais contexto. Estou direcionando minha carreira para engenharia de dados e desenvolvendo projetos que mostram essa transição na prática.</p>
+<p>Minha trajetória começou em suporte técnico e processos fiscais, trabalhando com regras rígidas de negócio, grandes volumes de dados e rotinas que não podiam falhar.</p>
+<p>Hoje uso essa experiência para construir integrações e automações com mais contexto.</p>
 <dl class="skill-groups">
-<div class="skill-group"><dt>Uso em projetos</dt><dd>SQL, Python, PostgreSQL, APIs REST, Power BI, Git e GitHub.</dd></div>
-<div class="skill-group"><dt>Uso no trabalho</dt><dd>n8n, integrações de APIs, automações, CRM e processos operacionais.</dd></div>
-<div class="skill-group"><dt>Em aprofundamento</dt><dd>Airflow, Great Expectations, Microsoft Fabric e modelagem dimensional.</dd></div>
+<div class="skill-group"><dt>Uso em projetos</dt><dd>Python, Mongo DB, Great Expectations, Git e GitHub.</dd></div>
+<div class="skill-group"><dt>Uso no trabalho</dt><dd>N8N, SQL, Javascript, SQLServer, APIs REST.</dd></div>
+<div class="skill-group"><dt>Em aprofundamento</dt><dd>Orquestração, GenAI, Spark, Databricks, AI Agents.</dd></div>
 </dl>
 </div>
 </div>
@@ -586,7 +600,7 @@ footer { padding-top: 28px; }
 <p class="eyebrow">Contato</p>
 <h2>Vamos conversar!</h2>
 </div>
-<p class="contact-copy">Hoje meu foco está em aprofundar minha atuação em engenharia de dados e construir soluções que resolvam problemas reais.</p>
+<p class="contact-copy">Hoje meu foco está em aprofundar minha atuação em engenharia de dados e construir soluções que resolvam problemas de grande impacto.</p>
 </div>
 <div class="contact-links" data-reveal="">
 <a class="contact-link" href="mailto:brenda.pmedeiros@outlook.com"><span><strong>E-mail</strong><small>brenda.pmedeiros@outlook.com</small></span><span>↗</span></a>
@@ -596,7 +610,7 @@ footer { padding-top: 28px; }
 <footer>
 <div class="footer-row">
 <span>© 2026 Brenda Medeiros</span>
-<a href="#inicio">Voltar ao início ↑</a>
+<a href="#inicio">↑</a>
 </div>
 </footer>
 </div>
